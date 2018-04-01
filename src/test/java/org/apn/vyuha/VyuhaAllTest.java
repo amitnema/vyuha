@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import java.util.List;
 
+import org.apn.vyuha.scala.Solution;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.collections.Lists;
@@ -19,6 +20,7 @@ public class VyuhaAllTest {
 	private BinaryGap binaryGap = new BinaryGap();
 	private CyclicRotation cyclicRotation = new CyclicRotation();
 	private OddOccurrencesInArray oddOccurrencesInArray = new OddOccurrencesInArray();
+	private Solution solution = new Solution();
 
 	@DataProvider
 	public Object[][] dpFindDuplicate() {
@@ -61,5 +63,26 @@ public class VyuhaAllTest {
 	@Test(dataProvider = "dpOddOccurrencesInArray")
 	public void testOddOccurrencesInArray(int[] arr, int expected) {
 		assertEquals(oddOccurrencesInArray.findOddOccurrencesInArray(arr), expected);
+	}
+
+	@DataProvider
+	public Object[][] dpTapeEquilibrium() {
+		return new Object[][] { new Object[] { new int[] { 3, 1, 2, 4, 3 }, 1 },
+				new Object[] { new int[] { 65, 95, 65, 21, 95 }, 21 } };
+	}
+
+	@Test(dataProvider = "dpTapeEquilibrium")
+	public void testTapeEquilibrium(int[] A, int expected) {
+		assertEquals(solution.tapeEquilibrium(A), expected);
+	}
+
+	@DataProvider
+	public Object[][] dpFrogJump() {
+		return new Object[][] { new Object[] { 10, 85, 30, 3 }, new Object[] { 50, 135, 20, 5 } };
+	}
+
+	@Test(dataProvider = "dpFrogJump")
+	public void testFrogJump(int x, int y, int d, int expected) {
+		assertEquals(solution.frogJmp(x, y, d), expected);
 	}
 }
