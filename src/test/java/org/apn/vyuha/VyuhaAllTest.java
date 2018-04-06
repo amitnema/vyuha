@@ -20,6 +20,7 @@ public class VyuhaAllTest {
 	private BinaryGap binaryGap = new BinaryGap();
 	private CyclicRotation cyclicRotation = new CyclicRotation();
 	private OddOccurrencesInArray oddOccurrencesInArray = new OddOccurrencesInArray();
+	private PermMissingElem permMissingElem = new PermMissingElem();
 	private Solution solution = new Solution();
 
 	@DataProvider
@@ -72,8 +73,8 @@ public class VyuhaAllTest {
 	}
 
 	@Test(dataProvider = "dpTapeEquilibrium")
-	public void testTapeEquilibrium(int[] A, int expected) {
-		assertEquals(solution.tapeEquilibrium(A), expected);
+	public void testTapeEquilibrium(int[] a, int expected) {
+		assertEquals(solution.tapeEquilibrium(a), expected);
 	}
 
 	@DataProvider
@@ -84,5 +85,34 @@ public class VyuhaAllTest {
 	@Test(dataProvider = "dpFrogJump")
 	public void testFrogJump(int x, int y, int d, int expected) {
 		assertEquals(solution.frogJmp(x, y, d), expected);
+	}
+
+	@DataProvider
+	public Object[][] dpPermMissingElem() {
+		return new Object[][] { new Object[] { new int[] { 3, 5, 1, 2 }, 4 },
+				new Object[] { new int[] { 5, 6, 8, 7, 4, 9, 3, 2 }, 1 } };
+	}
+
+	@Test(dataProvider = "dpPermMissingElem")
+	public void testPermMissingElem(int[] a, int expected) {
+		assertEquals(permMissingElem.findPermMissingElem(a), expected);
+		assertEquals(solution.permMissingElem(a), expected);
+	}
+
+	@DataProvider
+	public Object[][] dbPermCheck() {
+		return new Object[][] { new Object[] { new int[] { 3, 4, 1, 2 }, 0 },
+				new Object[] { new int[] { 5, 6, 8, 7, 4, 9, 3, 2 }, 1 }, new Object[] { new int[] { 1, 1, 3 }, 1 } };
+
+	}
+
+	@Test(dataProvider = "dbPermCheck")
+	public void testPermCheck(int[] a, int expected) {
+		assertEquals(solution.permCheck(a), expected);
+	}
+
+	@Test(dataProvider = "dbPermCheck")
+	public void testPermCheck2(int[] a, int expected) {
+		assertEquals(solution.permCheck2(a), expected);
 	}
 }

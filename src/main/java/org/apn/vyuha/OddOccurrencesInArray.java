@@ -17,8 +17,9 @@ package org.apn.vyuha;
 public class OddOccurrencesInArray {
 	public int findOddOccurrencesInArray(int[] arr) {
 		int result = 0;
+		// Using extensive-OR : "A or B, but not, A and B"
 		for (int i : arr) {
-			// TODO implementation in progress
+			result ^= i;
 		}
 		return result;
 	}

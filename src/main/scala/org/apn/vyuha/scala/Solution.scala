@@ -65,10 +65,80 @@ class Solution {
    * X ≤ Y.
    *
    * </br>
-   * Reference https://app.codility.com/programmers/lessons/3-time_complexity/frog_jmp/
+   * Reference: https://app.codility.com/programmers/lessons/3-time_complexity/frog_jmp/
    */
   def frogJmp(x: Int, y: Int, d: Int): Int = {
     math.ceil((y - x).toDouble / d).toInt
+  }
+
+  /**
+   * A zero-indexed array A consisting of N different integers is given. The array contains integers in the range [1..(N + 1)], which means that exactly one element is missing.
+   *
+   * Your goal is to find that missing element.
+   * <pre>
+   * Assume that:
+   *
+   * N is an integer within the range [0..100,000];
+   * the elements of A are all distinct;
+   * each element of array A is an integer within the range [1..(N + 1)].
+   *
+   *
+   * </pre>
+   *
+   * < /br>
+   * Reference: https://app.codility.com/programmers/lessons/3-time_complexity/perm_missing_elem/
+   */
+  def permMissingElem(a: Array[Int]): Int = {
+    val length = a.length
+    //sum of all the elements in the range 1 to N
+    val sum = length * (length + 1) / 2
+    var missingVal = sum;
+    a.foreach(x => {
+      //Do not consider the (n+1)th element from the array
+      if (x != length + 1) {
+        //removing all the element from the totals
+        missingVal = missingVal - x
+      }
+    })
+    missingVal
+  }
+
+  /**
+   * A non-empty zero-indexed array A consisting of N integers is given.
+   *
+   * A permutation is a sequence containing each element from 1 to N once, and only once.
+   * </ br>
+   * that, given a zero-indexed array A, returns 1 if array A is a permutation and 0 if it is not.
+   * </br>
+   * Assume that:
+   *
+   * N is an integer within the range [1..100,000];
+   * each element of array A is an integer within the range [1..1,000,000,000].
+   *
+   */
+  def permCheck(a: Array[Int]): Int = {
+    val l = a.length
+    val sum = l * (l + 1) / 2
+    var diff = sum
+    a.foreach(i => {
+      diff = diff - i
+    })
+    if (diff == 0) 0 else 1
+  }
+  
+  
+  def permCheck2(a: Array[Int]): Int = {
+    val exists: Array[Boolean] = new Array[Boolean](a.length+1)
+    var retVal = 0
+    a.foreach(i => {
+      if (i < 1 || i > a.length) {
+        return 0
+      }
+      if (exists(i)) {
+        return 0
+      } else exists(i) = true
+    })
+    return 1
   }
 
 }
