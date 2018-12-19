@@ -141,11 +141,14 @@ class Solution {
   }
   /**
    * <pre>
-   * A small frog wants to get to the other side of a river. The frog is initially located on one bank of the river (position 0) and wants to get to the opposite bank (position X+1). Leaves fall from a tree onto the surface of the river.
+   * A small frog wants to get to the other side of a river. The frog is initially located on one bank of the river (position 0) and wants to get to the opposite bank (position X+1).
+   * Leaves fall from a tree onto the surface of the river.
    *
    * You are given a zero-indexed array A consisting of N integers representing the falling leaves. A[K] represents the position where one leaf falls at time K, measured in seconds.
    *
-   * The goal is to find the earliest time when the frog can jump to the other side of the river. The frog can cross only when leaves appear at every position across the river from 1 to X (that is, we want to find the earliest moment when all the positions from 1 to X are covered by leaves). You may assume that the speed of the current in the river is negligibly small, i.e. the leaves do not change their positions once they fall in the river.
+   * The goal is to find the earliest time when the frog can jump to the other side of the river. The frog can cross only when leaves appear at every position across the river from 1 to X
+   * (that is, we want to find the earliest moment when all the positions from 1 to X are covered by leaves). You may assume that the speed of the current in the river is negligibly small,
+   * i.e. the leaves do not change their positions once they fall in the river.
    *
    * For example, you are given integer X = 5 and array A such that:
    * A[0] = 1
@@ -162,8 +165,19 @@ class Solution {
    * Reference: https://app.codility.com/programmers/lessons/4-counting_elements/frog_river_one
    */
   def frogRiverOne(x: Int, a: Array[Int]): Int = {
-//    a.find(x)
-    0
+    var steps = x
+    val bitmap = new Array[Boolean](steps + 1)
+    for (i <- 0 until a.length) {
+      print("| i="+i +"; steps="+ steps)
+      if (!bitmap(a(i))) {
+        bitmap(a(i)) = true
+        steps -= 1
+      }
+      if (steps == 0) steps
+    }
+    println("| \n bitmap="+bitmap.mkString(","))
+    
+    -1
   }
 
 }

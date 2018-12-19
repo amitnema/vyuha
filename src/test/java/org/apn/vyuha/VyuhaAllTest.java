@@ -275,6 +275,7 @@ public class VyuhaAllTest {
 	@Test(dataProvider = "dpFrogRiverOne")
 	private void testFrogRiverOne(final int X, final int[] A, final int expected) {
 		assertEquals(frogRiverOne.findFrogRiverOne(5, A), expected);
+//		assertEquals(solution.frogRiverOne(5, A), expected);
 	}
 
 	@DataProvider
