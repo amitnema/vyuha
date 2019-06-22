@@ -15,7 +15,7 @@ jdk:
   - oraclejdk8
 
 script:
-  - mvn clean site sonar:sonar
+  - mvn clean verify sonar:sonar
 
 after_success:
   - python <(curl -s https://raw.githubusercontent.com/TouK/sputnik-ci/master/sputnik-ci.py)
