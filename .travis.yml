@@ -1,21 +1,35 @@
 language: java
-sudo: true
+
+# Skip "install" stage:
 install: true
 
-dist: trusty
+# Use container-based infrastructure:
+sudo: true
 
-before_script:
-  - sudo sysctl -w vm.max_map_count=262144
-  
+dist: trusty
 addons:
+  apt:
+    packages:
+      - openjdk-8-jdk
   sonarcloud:
     organization: "amitnema-github"
 
-jdk:
-  - oraclejdk8
 
-script:
-  - mvn clean verify sonar:sonar
+# Keep Maven local repository between builds:
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'
+
+env:
+  - JDK=8
+#  - JDK=8
+#    ECJ=true
+
+before_script:
+  - sudo sysctl -w vm.max_map_count=262144
+
+script: ./.travis.sh
 
 after_success:
   - python <(curl -s https://raw.githubusercontent.com/TouK/sputnik-ci/master/sputnik-ci.py)
